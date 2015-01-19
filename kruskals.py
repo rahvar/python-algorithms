@@ -42,12 +42,6 @@ def kruskals(edges,vertices):
     return mst
 
 
-
-
-
-
-
-
 if __name__=="__main__":
 
 
