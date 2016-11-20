@@ -1,20 +1,18 @@
 from collections import defaultdict
 from heapq import *
 
-def prims(edges,nodes):
+def prims(g):
   
-  graph=defaultdict(list)
+  g = graph
   
-  for v1,v2,w in edges:
-      graph[v1].append((w,v1,v2))
-      graph[v2].append((w,v2,v1))
+
   mst=[]    
-  initial=nodes[0]
+  initial=1
   visited=set()    
   visited.add(initial)
-  unvisited_edges=graph[nodes[0]][:]
+  unvisited_edges=graph[1][:]
   heapify(unvisited_edges) 
-  
+  total_weight = 0
   while unvisited_edges:
             
          weight,n1,n2=heappop(unvisited_edges)
@@ -23,7 +21,7 @@ def prims(edges,nodes):
              visited.add(n2)
              
              mst.append((n1,n2,weight))
-             
+             total_weight += weight
              for edge in graph[n2]:
                  if edge[2] not in visited:
                      heappush(unvisited_edges,edge)
@@ -31,21 +29,12 @@ def prims(edges,nodes):
   return mst                   
       
     
-if __name__ == "__main__":
-    edges = [
-        ("A", "B", 7),
-        ("A", "D", 5),
-        ("B", "C", 8),
-        ("B", "D", 9),
-        ("B", "E", 7),
-        ("C", "E", 5),
-        ("D", "E", 15),
-        ("D", "F", 6),
-        ("E", "F", 8),
-        ("E", "G", 9),
-        ("F", "G", 11)
-    ]    
-    nodes=["A","B","C","D","E","F","G"]
-    
-    print prims(edges,nodes)
+n,m = map(int,raw_input().strip().split())
+graph = defaultdict(list)
+for i in range(m):
+    n1,n2,w = map(int,raw_input().strip().split())
+    graph[n1].append((w,n1,n2))
+    graph[n2].append((w,n2,n1))
+
+print prims(graph)
         
