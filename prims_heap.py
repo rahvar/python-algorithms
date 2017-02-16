@@ -1,8 +1,6 @@
 
 from collections import defaultdict
 
-
-
 INF = 9999999
 
 class Heap:
@@ -64,9 +62,6 @@ class Heap:
 
 
 
-
-
-
 def prims(g):
   
   g = graph
@@ -116,7 +111,6 @@ def prims(g):
  
   return mst,total_weight                   
       
-
 f = open('input.txt','r')
 n,m = map(int,f.readline().strip().split())
 #n,m = map(int,raw_input().strip().split())
@@ -131,9 +125,4 @@ for i in range(m):
     graph[n2].append((w,n2,n1))
 
 mst,wt = prims(graph)
-
- 
-
-#for i in range(n-1):
-#    print mst[i],"-",act_mst[i]
 
